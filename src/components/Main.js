@@ -8,8 +8,7 @@ import Sectionnotes from "./Sectionnotes";
 import Chapternotes from "./Chapternotes";
 import "../App.css";
 import "../styles/Main.css";
-import { Translate } from "@mui/icons-material";
-import { Table2 } from "./Table2";
+
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -147,12 +146,13 @@ export const Main = ({ isValueSelected }) => {
                 <Box
                   className="tabs"
                   sx={{
-                    height: "25px",
+                    height: "35px",
                     width: "920px",
-                    backgroundColor: "#c8e2dd",
-                    color: "black",
+                    backgroundColor: "#c8e2da",
+                   
                     fontFamily: "sans-serif",
                     fontSize: "13px",
+                marginTop:"10px",
 
                     mt: "20px",
                     ml: "-219px",

@@ -1,26 +1,29 @@
 import React, { useEffect, useState } from "react";
 
 const Codenotes = () => {
-  const [results, setResults] = useState("");
+  const [results, setResults] = useState(null);
 
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch(`/codes/${global.values.code}/details`);
-        if (response.ok) {
-          const data = await response.json();
-          setResults(data);
-        } else {
-          console.error("Failed to fetch data");
+        if (global.values && global.values.code) {
+          const response = await fetch(`/codes/${global.values.code}/details/?version=${global.years}`);
+          if (response.ok) {
+            const data = await response.json();
+            setResults(data);
+          } else {
+            console.error("Failed to fetch data");
+          }
         }
       } catch (error) {
         console.error("Error:", error);
       }
     };
     fetchBooks();
-  }, [global.values.code]);
+  }, [global.values]);
 
   console.log("our result is", results);
+  
   return (
     <div className="codenotes">
       <div>
@@ -29,7 +32,7 @@ const Codenotes = () => {
             <tr></tr>
           </thead>
           <tbody>
-            {results && (
+            {results && results.code && (
               <tr key={results.code}>
                 <td>{results.longDescription}</td>
               </tr>

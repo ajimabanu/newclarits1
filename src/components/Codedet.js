@@ -1,7 +1,6 @@
 import { Close } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import "../App.css";
-
 import React, { useEffect, useState } from "react";
 
 const Codedet = () => {
@@ -11,19 +10,21 @@ const Codedet = () => {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch(`/codes/${global.values.code}/details`);
-        if (response.ok) {
-          const data = await response.json();
-          setResult(data);
-        } else {
-          console.error("Failed to fetch data");
+        if (global.values && global.values.code) {
+          const response = await fetch(`/codes/${global.values.code}/details/?version=${global.years}`);
+          if (response.ok) {
+            const data = await response.json();
+            setResult(data);
+          } else {
+            console.error("Failed to fetch data");
+          }
         }
       } catch (error) {
         console.error("Error:", error);
       }
     };
     fetchBooks();
-  }, [global.values.code]);
+  }, [global.values]);
 
   const handleClose = () => {
     setIsClosed(true);
@@ -33,7 +34,7 @@ const Codedet = () => {
   console.log("our result is", result);
   return (
     <div className="division">
-      {!isClosed && (
+      {!isClosed && global.values && global.values.code && (
         <div>
           <div>
             <Button
