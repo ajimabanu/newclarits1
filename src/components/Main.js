@@ -8,42 +8,12 @@ import Sectionnotes from "./Sectionnotes";
 import Chapternotes from "./Chapternotes";
 import "../App.css";
 import "../styles/Main.css";
+import Tabeffect from "./Tabeffect";
 
 
-function CustomTabPanel(props) {
-  const { children, value, index, ...other } = props;
-  return (
-    <div
-      role="tabpanel"
-      hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
-      aria-labelledby={`simple-tab-${index}`}
-      {...other}
-    >
-      {value === index && <div>{children}</div>}
-    </div>
-  );
-}
-
-CustomTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-function a11yProps(index) {
-  return {
-    id: `simple-tab-${index}`,
-    "aria-controls": `simple-tabpanel-${index}`,
-  };
-}
 
 export const Main = ({ isValueSelected }) => {
-  const [value, setValue] = useState(0);
-
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
-
+  
   return (
     <div>
       <Container maxWidth="4px">
@@ -69,7 +39,6 @@ export const Main = ({ isValueSelected }) => {
               <Typography
                 classname="indexSearch"
                 sx={{
-                  //backgroundColor: "#ccc6ed",
                   backgroundColor: "#c8e2dd",
                   color: "#4185d2",
                   mt: "-8px",
@@ -118,8 +87,7 @@ export const Main = ({ isValueSelected }) => {
               </Typography>
             </Box>
             <Stack direction={"column"} ml={-30} mt={10}>
-              {" "}
-              <Typography
+               <Typography
                 className="codedetails"
                 variant="subtitle1"
                 fontFamily={"sans-serif"}
@@ -138,146 +106,13 @@ export const Main = ({ isValueSelected }) => {
               </Box>
               <Box
                 sx={{
-                  height: "300px",
-                  width: "100%",
-                  /// backgroundColor: "white",
+                  height: "500px",
+                  width: "930px",
+                  ml: "-200px",
+                  overflowY: "scroll",
+                  mt: "10px"
                 }}
-              >
-                <Box
-                  className="tabs"
-                  sx={{
-                    height: "35px",
-                    width: "920px",
-                    backgroundColor: "#c8e2da",
-                   
-                    fontFamily: "sans-serif",
-                    fontSize: "13px",
-                marginTop:"10px",
-
-                    mt: "20px",
-                    ml: "-219px",
-                  }}
-                >
-                  <Stack direction={"row"} gap={"70px"} ml={5}>
-                    <Box sx={{ width: "100%" }}>
-                      <Box sx={{ marginTop: "-14px" }}>
-                        <Tabs
-                          textColor="primary"
-                          indicatorColor="primary"
-                          className="tabs"
-                          value={value}
-                          onChange={handleChange}
-                          aria-label="basic tabs example"
-                          sx={{
-                            marginLeft: "-45px",
-                          }}
-                          TabIndicatorProps={{
-                            style: {
-                              marginLeft: "8px",
-                              transition: "1s",
-                              height: "70%",
-                              borderRadius: "30px",
-                              backgroundColor: "#90B2D8",
-                              opacity: 0.3,
-                            },
-                          }}
-                        >
-                          <Tab
-                            disableFocusRipple
-                            disableRipple
-                            disableTouchRipple
-                            sx={{
-                              cursor: "pointer",
-                              variant: "subtitle1",
-                              fontWeight: "700px",
-                              color: "#4185d2",
-                              textTransform: "none",
-                              width: "150px",
-                            }}
-                            label=" Code notes"
-                            {...a11yProps(0)}
-                          />
-                          <Tab
-                            disableFocusRipple
-                            disableRipple
-                            disableTouchRipple
-                            sx={{
-                              cursor: "pointer",
-                              variant: "subtitle1",
-                              fontWeight: "700px",
-                              color: "#4185d2",
-                              textTransform: "none",
-                              width: "150px",
-                            }}
-                            variant="subtitle1"
-                            fontWeight={"700"}
-                            label="Section notes"
-                            {...a11yProps(1)}
-                          />
-                          <Tab
-                            className="tabs"
-                            disableFocusRipple
-                            disableRipple
-                            disableTouchRipple
-                            sx={{
-                              cursor: "pointer",
-                              variant: "subtitle1",
-                              fontWeight: "700px",
-                              color: "#4185d2",
-                              textTransform: "none",
-                              width: "150px",
-                            }}
-                            variant="subtitle1"
-                            fontWeight={"700"}
-                            label="Chapter notes"
-                            {...a11yProps(2)}
-                          />
-                          <Tab
-                            disableFocusRipple
-                            disableRipple
-                            disableTouchRipple
-                            sx={{
-                              cursor: "pointer",
-                              variant: "subtitle1",
-                              fontWeight: "700px",
-                              color: "#4185d2",
-                              textTransform: "none",
-                              width: "150px",
-                            }}
-                            variant="subtitle1"
-                            fontWeight={"700"}
-                            label="Chapter guidlines"
-                            {...a11yProps(3)}
-                          />
-                        </Tabs>
-                      </Box>
-                      <div
-                        className="tabpanels"
-                        style={{
-                          height: "180px",
-                          width: "850px",
-                          overflowY: "scroll",
-                          paddingLeft: "30px",
-                        }}
-                      >
-                        {" "}
-                        <CustomTabPanel value={value} index={0}>
-                          <Codenotes />
-                        </CustomTabPanel>
-                        <CustomTabPanel value={value} index={1}>
-                          <Sectionnotes />
-                        </CustomTabPanel>
-                        <CustomTabPanel value={value} index={2}>
-                          <Chapternotes />
-                        </CustomTabPanel>
-                        <CustomTabPanel
-                          value={value}
-                          index={3}
-                        ></CustomTabPanel>
-                      </div>
-                    </Box>
-                  </Stack>
-                </Box>
+              >  <Tabeffect/>    
               </Box>
             </Stack>
           </Box>

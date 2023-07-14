@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Chapter.css";
+
 
 const Chapternotes = () => {
   const [results, setResults] = useState(null);
