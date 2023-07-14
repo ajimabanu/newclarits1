@@ -2,10 +2,7 @@ import { Box, Container, Stack, Typography, Tab, Tabs } from "@mui/material";
 import React, { useState } from "react";
 
 import Codedet from "./Codedet";
-import PropTypes from "prop-types";
-import Codenotes from "./Codenotes";
-import Sectionnotes from "./Sectionnotes";
-import Chapternotes from "./Chapternotes";
+
 import "../App.css";
 import "../styles/Main.css";
 import Tabeffect from "./Tabeffect";
